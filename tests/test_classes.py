@@ -1,5 +1,5 @@
-from src.file1 import Category, Product
-
+from src.class_category import Category
+from src.class_product import Product
 import pytest
 
 
