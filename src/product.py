@@ -10,18 +10,18 @@ class Product:
 
 
     @classmethod
-    def add_in_list(cls, dict_product: dict):
+    def add_product(cls, dict_product: dict):
         """Возвращает объект класса Product из словаря"""
         return cls(dict_product["name"], dict_product["description"], dict_product["price"], dict_product["quantity"])
 
 
     @property
-    def atr_price(self):
+    def price(self):
         return self.__price
 
 
-    @atr_price.setter
-    def atr_price(self):
+    @price.setter
+    def price(self):
         if self.__price <= 0:
             print("Введена некорректная цена")
 
