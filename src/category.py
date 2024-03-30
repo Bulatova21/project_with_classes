@@ -1,4 +1,4 @@
-from class_product import Product
+from product import Product
 
 
 class Category:
@@ -14,24 +14,24 @@ class Category:
         Category.total_number_of_unique_products += len(product)
         Category.total_number_of_categories += 1
 
-    @property
-    def get_product(self):
-        """Геттер, возвращающий список product"""
-        return self.__product
 
-    @get_product.setter
-    def get_product(self, input_product):
-        """Сеттер, принимающий на вход объект товара и добавляющий его в список."""
-        self.__product += input_product.split("  , ")
+
 
 
     @property
-    def list_output(self):
-        """Геттер, который будет выводить список товаров в формате:Продукт, 80 руб. Остаток: 15 шт."""
-        list_product = []
+    def products(self) -> str:
+        result = ''
         for product in self.__product:
-            list_product.append(f'{product.name}, {product.price}. Остаток: {product.quantity} шт.')
-        return list_product
+            result += f'{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n'
+
+        return result
+
+
+    @products.setter
+    def products(self, product):
+        """Сеттер, принимающий на вход объект товара и добавляющий его в список."""
+        self.__product.append(product)
+
 
 
 if __name__ == "__main__":
@@ -41,4 +41,4 @@ if __name__ == "__main__":
     # print(cat1.description)
     # print(cat1.__product)
     #print(cat1.add_product)
-    print(cat1.list_output)
+    print(cat1.products)
