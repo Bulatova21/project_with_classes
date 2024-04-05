@@ -8,6 +8,13 @@ class Product:
         self.quantity = quantity
 
 
+    def __str__(self) -> str:
+        """Cтроковое отображение в следующем виде: Название продукта, 80 руб. Остаток: 15 шт."""
+        return f'{self.name}, {self.__price} руб. Остаток: {self.quantity} шт.'
+
+    def __add__(self, other):
+        return self.__price * self.quantity + other.__price * other.quantity
+
 
     @classmethod
     def add_product(cls, dict_product: dict):
@@ -28,7 +35,11 @@ class Product:
 
 if __name__ == "__main__":
     cat2 = Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
-    print(cat2.name)
-    print(cat2.description)
-    print(cat2.price)
-    print(cat2.quantity)
+    dog2 = Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 160000.0, 4)
+    # print(cat2.name)
+    # print(cat2.description)
+    # print(cat2.price)
+    # print(cat2.quantity)
+    #print(cat2)
+    res = cat2 + dog2
+    print(res)
