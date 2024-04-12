@@ -6,7 +6,7 @@ class Category:
     total_number_of_categories = 0
     total_number_of_unique_products = 0
 
-    def __init__(self, name: str, description: str, product: list[Product]):
+    def __init__(self, name: str, description: str, product: list[Product]) -> object:
         self.name = name
         self.description = description
         self.__product = product
@@ -25,9 +25,13 @@ class Category:
     @products.setter
     def products(self, product):
         """Сеттер, принимающий на вход объект товара и добавляющий его в список."""
-        self.__product.append(product)
+        if isinstance(product, Category):
+            self.__product.append(product)
+
+        raise TypeError
 
     def __len__(self) -> int:
+        """Магический метод, считающий количество продуктов из общего числа всех продуктов на складе."""
         counter = 0
         for product in self.__product:
             counter += product.quantity
@@ -36,7 +40,6 @@ class Category:
     def __str__(self) -> str:
         """Cтроковое отображение в следующем виде: Название категории, количество продуктов: 200 шт."""
         return f'{self.name}, количество продуктов: {len(self)}'
-
 
 
 if __name__ == "__main__":
