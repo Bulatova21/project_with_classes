@@ -1,10 +1,16 @@
-class Product:
+from product_abstract import ProductAbstract
+from mixin_repr import MixinRepr
 
+
+class Product(MixinRepr, ProductAbstract):
     def __init__(self, name: str, description: str, price: float, quantity: int):
+        """Конструктор класса Продукт"""
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
+
+        MixinRepr.__init__(self)
 
     def __str__(self) -> str:
         """Cтроковое отображение в следующем виде: Название продукта, 80 руб. Остаток: 15 шт."""
@@ -21,10 +27,11 @@ class Product:
 
     @property
     def price(self):
+        """Метод возвращающий приватный атрибут """
         return self.__price
 
     @price.setter
-    def price(self):
+    def price(self, value):
         if self.__price <= 0:
             print("Введена некорректная цена")
 
@@ -40,6 +47,7 @@ class Smartphone(Product):
         self.model = model
         self.built_in_memory_capacity = built_in_memory_capacity
         self.color = color
+        MixinRepr.__init__(self)
 
     def __str__(self) -> str:
         """Cтроковое отображение в следующем виде: Название продукта, 80 руб. Остаток: 15 шт.
@@ -57,11 +65,13 @@ class Smartphone(Product):
 
 class LawnGrass(Product):
     """Класс Трава газонная"""
+
     def __init__(self, name, description, price, quantity, country: str, germination_period: int, color: str):
         super().__init__(name, description, price, quantity)
         self.country = country
         self.germination_period = germination_period
         self.color = color
+        MixinRepr.__init__(self)
 
     def __str__(self) -> str:
         """Cтроковое отображение в следующем виде: Название продукта, 80 руб. Остаток: 15 шт.
@@ -76,6 +86,7 @@ class LawnGrass(Product):
 
         raise TypeError
 
+
 if __name__ == "__main__":
     cat2 = Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
     dog2 = Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 160000.0, 4)
@@ -87,8 +98,9 @@ if __name__ == "__main__":
     # res = cat2 + dog2
     # print(res)
     smart1 = Smartphone("Samsung Galaxy C22 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5, 44.69,
-                      "Galaxy C23 Ultra",
-                      "1Т", "yellow")
-    lawn1 = LawnGrass("Samsung Galaxy C22 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5, "Russia", 14, "зеленый" )
+                        "Galaxy C23 Ultra",
+                        "1Т", "yellow")
+    lawn1 = LawnGrass("Samsung Galaxy C22 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5, "Russia", 14,
+                      "зеленый")
     print(smart1)
     print(lawn1)
