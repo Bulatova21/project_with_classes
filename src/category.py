@@ -14,6 +14,18 @@ class Category:
         Category.total_number_of_unique_products += len(product)
         Category.total_number_of_categories += 1
 
+    def middle_price(self) -> int:
+        """Подсчитывает средний ценник всех товаров"""
+        try:
+            count_price = 0
+            for item in self.__product:
+                count_price += item.price
+            avg_price = count_price / len(self.__product)
+            return avg_price
+
+        except ZeroDivisionError:
+            return 0
+
     @property
     def products(self) -> str:
         result = ''
@@ -45,6 +57,8 @@ class Category:
 if __name__ == "__main__":
     cat1 = Category("Техника", "Электрические приборы ",
                     [Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)])
-
+    cat2 = Category("gjgjjа", "Электрические приборы ",
+                    [Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)])
     print(cat1)
     len(cat1)
+    print(cat1.middle_price())

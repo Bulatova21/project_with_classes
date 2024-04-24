@@ -9,8 +9,11 @@ class Product(MixinRepr, ProductAbstract):
         self.description = description
         self.__price = price
         self.quantity = quantity
-
+        if self.quantity == 0:
+            raise ValueError
         MixinRepr.__init__(self)
+
+
 
     def __str__(self) -> str:
         """Cтроковое отображение в следующем виде: Название продукта, 80 руб. Остаток: 15 шт."""
@@ -88,7 +91,7 @@ class LawnGrass(Product):
 
 
 if __name__ == "__main__":
-    cat2 = Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    cat2 = Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 0)
     dog2 = Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 160000.0, 4)
     # print(cat2.name)
     # print(cat2.description)
