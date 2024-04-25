@@ -9,8 +9,6 @@ class Product(MixinRepr, ProductAbstract):
         self.description = description
         self.__price = price
         self.quantity = quantity
-        if self.quantity == 0:
-            raise ValueError
         MixinRepr.__init__(self)
 
 

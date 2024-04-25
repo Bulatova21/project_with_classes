@@ -37,10 +37,15 @@ class Category:
     @products.setter
     def products(self, product):
         """Сеттер, принимающий на вход объект товара и добавляющий его в список."""
-        if isinstance(product, Category):
-            self.__product.append(product)
+        if product.quantity == 0:
+            raise ValueError("Нельзя добавить товар с нулевым количеством!")
 
+        if isinstance(product, Product):
+            self.__product.append(product)
         raise TypeError
+
+
+
 
     def __len__(self) -> int:
         """Магический метод, считающий количество продуктов из общего числа всех продуктов на складе."""
@@ -56,9 +61,12 @@ class Category:
 
 if __name__ == "__main__":
     cat1 = Category("Техника", "Электрические приборы ",
-                    [Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)])
+                    [Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера",
+                             180000.0, 0)])
     cat2 = Category("gjgjjа", "Электрические приборы ",
-                    [Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)])
+                    [Product("Samsung Galaxy C23 Ultra", "256GB, Серый цвет, 200MP камера",
+                             180000.0, 5)])
     print(cat1)
     len(cat1)
     print(cat1.middle_price())
+    #cat2.products = Product('name', 'description', 80000.0, 0)
